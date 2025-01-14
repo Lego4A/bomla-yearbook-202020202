@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMLA Yearbook Sale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #0119ff;
+            color: #ffffff;
+            padding: 20px;
+        }
+        .email-header h1 {
+            margin: 0;
+            font-size: 35px;
+            flex: 1;
+            text-align: left;
+        }
+        .email-header img {
+            width: 80px;
+            height: auto;
+            margin-left: 10px;
+        }
+        .email-body {
+            padding: 20px;
+            color: #333333;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+        }
+        .email-body p {
+            margin: 0 0 15px;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: block;
+            background-color: #0119ff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 20px auto;
+            text-align: center;
+            width: fit-content;
+        }
+        .cta-button:hover {
+            background-color: #0013bb;
+        }
+        .timer {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0119ff;
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Initialization -->
+    <script type="module">
+        import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+        window.addEventListener('DOMContentLoaded', () => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        });
+    </script>
+
+    <!-- Email Content -->
+    <div class="email-container">
+        <div class="email-header">
+            <h1>BOMLA Yearbook Sale!</h1>
+            <img src="bomla_logo.png" alt="BOMLA Yearbook" />
+        </div>
+        <div class="email-body">
+            <p>Dear BOMLA Parents,</p>
+            <p>Don’t miss the opportunity to own a piece of this year’s unforgettable memories. Our yearbooks are now on sale!</p>
+            <p>Pre-order your copy today to secure the moments that made this school year truly special. Yearbooks are available for just a <strong>limited time</strong> until <strong>01/31/2025</strong>.</p>
+            
+            <!-- Countdown Timer -->
+            <div class="timer" id="countdown-timer">Loading countdown...</div>
+            
+            <a href="https://www.jostens.com/apps/store/productBrowse/2479449/BARACK-OBAMA-MALE-LDRSHP-ACAD/2025-Yearbook/2024091604154230071/CATALOG_SHOP" class="cta-button">Order Your Yearbook Now</a>
+            
+            <p>Thank you for making this school year amazing!</p>
+            <p>Warm regards,</p>
+            <p><strong>BOMLA Yearbook Crew</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer Script
+        function updateTimer() {
+            const saleEndDate = new Date('2025-01-31T23:59:59').getTime();
+            const now = new Date().getTime();
+            const timeRemaining = saleEndDate - now;
+
+            if (timeRemaining <= 0) {
+                document.getElementById('countdown-timer').innerText = 'The sale has ended!';
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-timer').innerText = `${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds remaining`;
+        }
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
